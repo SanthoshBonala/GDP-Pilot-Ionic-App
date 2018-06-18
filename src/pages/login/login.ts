@@ -1,12 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the LoginPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { IonicPage, NavController, NavParams, ModalController, ViewController } from 'ionic-angular';
+import { HttpService } from '../../Services/HttpService';
+import { UsersListPage } from '../users-list/users-list';
+import { AlertService } from '../../Services/alertService';
 
 @IonicPage()
 @Component({
@@ -14,12 +10,26 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'login.html',
 })
 export class LoginPage {
+  email: String;
+  password: String;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, private viewCtrl: ViewController, private http: HttpService, private modalctrl: ModalController, private alertctrl: AlertService) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
-  }
+  signin() {
 
+    this.http.postHttpService('signin', {
+      email: this.email,
+      password: this.password
+    })
+      .subscribe(
+        response => {
+
+          this.navCtrl.setRoot(UsersListPage)
+        },
+        error => {
+          console.log(error)
+          this.alertctrl.generateAlert('Try Again', JSON.parse(error['_body']).message, ['Ok']).present()
+        })
+  }
 }
