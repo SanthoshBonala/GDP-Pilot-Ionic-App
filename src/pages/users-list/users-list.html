@@ -1,0 +1,34 @@
+<ion-header>
+
+  <ion-navbar>
+
+    <ion-title>UsersList</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="Signout()">
+        Sign Out
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list>
+    <ion-item *ngFor="let user of users" (click)="userinfo(user)">
+      {{ user.lastName}} {{ user.firstName }}
+    </ion-item>
+  </ion-list>
+
+  <ion-fab bottom right>
+    <button ion-fab mini (click)="AddUser()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
+
+</ion-content>

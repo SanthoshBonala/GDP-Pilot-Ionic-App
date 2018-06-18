@@ -1,0 +1,22 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>userinfo</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-card *ngFor="let prop of userattributes">
+    <ion-card-header>
+      {{ prop.toUpperCase() }}
+    </ion-card-header>
+    <ion-card-content>
+      {{ user[prop] }}
+    </ion-card-content>
+  </ion-card>
+
+
+</ion-content>

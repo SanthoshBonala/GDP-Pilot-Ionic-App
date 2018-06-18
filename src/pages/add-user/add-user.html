@@ -1,0 +1,52 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Add User</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-item>
+    <ion-input placeholder="First Name" type="text" [(ngModel)]="userdata.firstName"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input placeholder="Last Name" type="text" [(ngModel)]="userdata.lastName"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input placeholder="Email" type="email" [(ngModel)]="userdata.email"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input placeholder="password" type="password" [(ngModel)]="userdata.password"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-datetime  placeholder="Date Of Birth" [max]="date" displayFormat="MMMM DD,YYYY" pickerFormat="MMMM DD,YYYY" [(ngModel)]="userdata.dob"></ion-datetime>
+  </ion-item>
+  <ion-list radio-group [(ngModel)]="userdata.gender">
+    <ion-list-header>
+      Gender
+    </ion-list-header>
+    <ion-item>
+      <ion-label>Male</ion-label>
+      <ion-radio checked="true" value="male"></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>Female</ion-label>
+      <ion-radio value="female"></ion-radio>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-item>
+      <ion-label>Status</ion-label>
+      <ion-select [(ngModel)]="userdata.status">
+        <ion-option value="ACTIVE">Active</ion-option>
+        <ion-option value="INACTIVE">Inactive</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <button ion-button class="primary" (click)="signup()"> Sign Up</button>
+
+</ion-content>
